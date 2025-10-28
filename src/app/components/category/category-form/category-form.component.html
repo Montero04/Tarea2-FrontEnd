@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div>
+    <h2 class="mb-0">{{ isEdit ? 'Edit Category' : 'Add Category' }}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mb-2">
+        <label class="mb-1" for="name">Name*</label>
+        <input id="name" formControlName="name" type="text" class="form-control">
+        @if (form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)) {
+          <p class="text-danger my-1 p-absolute">Name is required</p>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mb-2">
+        <label class="mb-1" for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end mt-3">
+      <div class="">
+        <button (click)="callSaveMethod.emit(form.value)" [disabled]="form.invalid" class="btn btn-primary" type="button">
+          {{ isEdit ? 'Update' : 'Add Category' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
